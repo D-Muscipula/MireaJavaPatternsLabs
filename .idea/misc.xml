@@ -11,6 +11,11 @@
         <option value="$PROJECT_DIR$/task15/pom.xml" />
       </list>
     </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="$PROJECT_DIR$/tasks_19-20/pom.xml" />
+      </set>
+    </option>
   </component>
   <component name="ProjectResources">
     <resource url="http://logging.apache.org/log4j/2.0/config" location="$PROJECT_DIR$/task15/src/main/resources/log4j2-plain.xml" />
