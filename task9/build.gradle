@@ -1,0 +1,57 @@
+plugins {
+    id 'java'
+}
+
+group = 'org.example'
+version = '1.0-SNAPSHOT'
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'Task9'
+    }
+}
+
+tasks.register('copyJar', Copy) {
+    dependsOn 'jar'
+    from layout.buildDirectory.file("libs/task9-1.0-SNAPSHOT.jar")
+    into file("$rootDir/src/main/resources/")
+}
+
+tasks.register('removeJar', Delete) {
+    delete file("$rootDir/src/main/resources/task9-1.0-SNAPSHOT.jar")
+}
+
+tasks.register('buildImage', Exec) {
+    dependsOn 'copyJar'
+    finalizedBy 'removeJar'
+    commandLine 'docker', 'build', '-t', 'task9', './src/main/resources/'
+}
+
+tasks.register('createDockerContainer', Exec) {
+    dependsOn 'buildImage'
+    finalizedBy 'removeContainer'
+    commandLine 'docker', 'run', '--name', 'task9', 'task9'
+}
+
+tasks.register('removeContainer', Exec) {
+    finalizedBy 'removeImage'
+    commandLine 'docker', 'container', 'rm', 'task9'
+}
+
+tasks.register('removeImage', Exec) {
+    commandLine 'docker', 'image', 'rm', 'task9'
+}
+
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation platform('org.junit:junit-bom:5.9.1')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+}
+
+test {
+    useJUnitPlatform()
+}
