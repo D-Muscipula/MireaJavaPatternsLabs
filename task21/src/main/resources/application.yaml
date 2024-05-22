@@ -1,0 +1,29 @@
+spring:
+  jmx:
+    enabled: true
+  datasource:
+    url: jdbc:postgresql://localhost:5432/first_db
+    username: postgres
+    password: postgres
+  mail:
+    host: smtp.mail.ru
+    port: 465
+    properties:
+      mail:
+        smtp:
+          ssl:
+            enable: true
+            checkserveridentity: true
+            trust: "*"
+          auth: true
+          starttls:
+            enabled: true
+#        ssl:
+#            enable: true
+#            checkserveridentity: true
+#            trust: "*"
+    username: ${USERNAME}
+    password: ${PASSWORD}
+
+logging:
+    config: classpath:logback-spring.xml
