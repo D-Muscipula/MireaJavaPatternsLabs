@@ -1,0 +1,31 @@
+spring:
+  session:
+    jdbc:
+      initialize-schema: always
+      schema: tasks23_24/src/main/resources/schema/schema-postgresql.sql
+      table-name: SPRING_SESSION
+    timeout: 10m
+  jmx:
+    enabled: true
+  datasource:
+    url: jdbc:postgresql://localhost:5432/first_db
+    username: postgres
+    password: postgres
+  mail:
+    host: smtp.mail.ru
+    port: 465
+    properties:
+      mail:
+        smtp:
+          ssl:
+            enable: true
+            checkserveridentity: true
+            trust: "*"
+          auth: true
+          starttls:
+            enabled: true
+    username: ${USERNAME}
+    password: ${PASSWORD}
+
+logging:
+    config: classpath:logback-spring.xml

@@ -1,0 +1,1 @@
+Building(id=11, creationDate=2024-06-01 15:00:00.0, type=house1, address=Address{id=2, addressText='Rand Avenue', zipCode='123'})
